@@ -1,0 +1,41 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% load static %}
+{% block bodyblock %}
+<head>
+    <meta charset="utf-8" />
+    <title>Table Style</title>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+    <link rel = "stylesheet" href = "{% static 'tourn_info/rounds.css'%}">
+</head>
+<body>
+    <div class = "table-title">
+        <h3>Draw for Round 1</h3>       
+    </div>
+    <table class ="table-fill">
+        <thead>
+            <tr>
+                <th class = "text-left">Lobby</th>
+                <th class = "text-left">OG Team</th>
+                <th class = "text-left">OO Team</th>
+                <th class = "text-left">CG Team</th>
+                <th class = "text-left">CO Team</th>
+                <th class = "text-left">Adjudicators</th>
+            </tr>
+        </thead>
+        <tbody class = "table-hover">
+            {% for lobby, details in lobby_assignments.items %}
+                <tr>
+                    <td class = "text-left">{{ lobby.name }}</td>
+                    <td class = "text-left">{{ details.OG.name|default_if_none:"" }}</td>
+                    <td class = "text-left">{{ details.OO.name|default_if_none:"" }}</td>
+                    <td class = "text-left">{{ details.CG.name|default_if_none:"" }}</td>
+                    <td class = "text-left">{{ details.CO.name|default_if_none:"" }}</td>
+                    <td class = "text-left">{{ details.adjudicators }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="6">No team assignments available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}

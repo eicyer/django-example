@@ -1,0 +1,25 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% block bodyblock %}
+<h1>Participants!</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Participant</th>
+            <th>Team</th>
+            <th>Institution</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% regroup participants_inturn by name as participants_by_name %}
+        {% for participant_group in participants_by_name %}
+            {% for participant in participant_group.list|dictsort:"name" %}
+                <tr>
+                    <td>{{ participant.name }}</td>
+                    <td>{{ participant.team }}</td>
+                    <td>{{ participant.institution }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

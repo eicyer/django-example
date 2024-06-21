@@ -1,0 +1,35 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'tourn_info/styles.css' %}">
+{% endblock %}
+{% block bodyblock %}
+<h1>Teams</h1>
+
+{% if teams_inturn %}
+    <table>
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Speakers</th>
+                <th>Institution</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams_inturn %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>
+                        {% for participant in team.participants.all %}
+                            {{ participant.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ team.institution }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No teams are currently registered.</p>
+{% endif %}
+{% endblock %}

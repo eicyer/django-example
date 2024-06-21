@@ -1,0 +1,30 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% block bodyblock %}
+<h1>Adjudicators</h1>
+
+{% if adjudicators_inturn %}
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Adjudicator</th>
+                <th scope="col">Institution</th>
+                <th scope="col">Experience</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% regroup adjudicators_inturn by name as adjudicators_by_name %}
+            {% for adjudicator_group in adjudicators_by_name %}
+                {% for adjudicator in adjudicator_group.list|dictsort:"name" %}
+                    <tr class="{% if adjudicator.comitee %}committee{% endif %}">
+                        <td>{{ adjudicator.name }}</td>
+                        <td>{{ adjudicator.institution }}</td>
+                        <td>{{ adjudicator.experience }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No adjudicators are currently registered.</p>
+{% endif %}
+{% endblock %}

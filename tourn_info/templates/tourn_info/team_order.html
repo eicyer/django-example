@@ -1,0 +1,41 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% block bodyblock %}
+<h1>Team Standings</h1>
+<p>Number of teams: {{ teams.count }}</p>
+<table>
+    <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Team</th>
+            <th>Speakers</th>
+            <th>Institution</th>
+            <th>Total Points</th>
+            <th>R1 Points</th>
+            <th>R2 Points</th>
+            <th>R3 Points</th>
+            <th>R4 Points</th>
+            <th>R5 Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{forloop.counter}}</td>                
+                <td>{{ team.name }}</td>
+                <td>
+                    {% for participant in team.participants.all %}
+                        {{ participant.name }}<br>
+                    {% endfor %}
+                </td>
+                <td>{{ team.institution }}</td>
+                <td>{{ team.total_team_points }}</td>
+                <td>{{ team.r1_pt }}</td>
+                <td>{{ team.r2_pt }}</td>
+                <td>{{ team.r3_pt }}</td>
+                <td>{{ team.r4_pt }}</td>
+                <td>{{ team.r5_pt }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

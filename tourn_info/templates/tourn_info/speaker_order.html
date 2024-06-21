@@ -1,0 +1,42 @@
+{% extends 'tourn_info/tournament_detail.html' %}
+{% block bodyblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordered Speaker Points</title>
+</head>
+<body>
+    <h1>Ordered Speaker Points for {{ tournament.name }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>Institution</th>
+                <th>Round 1 Points</th>
+                <th>Round 2 Points</th>
+                <th>Round 3 Points</th>
+                <th>Round 4 Points</th>
+                <th>Round 5 Points</th>
+                <th>Total Points</th>
+                <th>Average Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+            <tr>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.institution }}</td>
+                <td>{{ participant.r1_spkr }}</td>
+                <td>{{ participant.r2_spkr }}</td>
+                <td>{{ participant.r3_spkr }}</td>
+                <td>{{ participant.r4_spkr }}</td>
+                <td>{{ participant.r5_spkr }}</td>
+                <td>{{ participant.total_speaker_points }}</td>
+                <td>{{ participant.average_speaker_points|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{%endblock%}

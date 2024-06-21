@@ -1,0 +1,38 @@
+{%extends 'main_page/main_p.html'%}
+<head>
+  <!-- other head elements -->
+  {% block head %}{% endblock %}
+</head>
+{% load static %}
+{%block bodyblock%}
+<h1> Welcome to {{tournament.name}}</h1>
+<h4>Hosted by {{tournament.host}} / {{tournament.date}}</h4>
+{{tournament.image}}
+<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+    <button onclick="location.href='{% url 'tourn_info:adjudicators' tournament_name=tournament.name %}'" id= "adjButton" type="button" class="btn btn-primary" {% if not tournament.adjudicator_view_accessible %}disabled{% endif %}>Adjudicators and Comitee</button>
+    <button onclick="location.href='{% url 'tourn_info:participants' tournament_name=tournament.name %}'" type="button"id="participantsButton" class="btn btn-primary" {% if not tournament.participant_view_accessible %}disabled{% endif %}>Participants</button>
+    <button onclick="location.href='{% url 'tourn_info:spstandings' tournament_name=tournament.name %}'" type="button" id = "spStandingsButton" class ="btn btn-primary" {% if not tournament.ordered_speaker_view_accessible %}disabled{% endif %}>Speaker Standings</button>
+    <button onclick="location.href='{% url 'tourn_info:teamstandings' tournament_name=tournament.name%}'" id= "teamStandingsButton" type="button" class="btn btn-primary" {% if not tournament.ordered_team_view_accessible %}disabled{%endif%}>Team Standings</button>
+    <button onclick="location.href='{% url 'tourn_info:teams' tournament_name=tournament.name%}'" id= "teamButton" type="button" class="btn btn-primary" {% if not tournament.team_view_accessible %}disabled{%endif%}>Teams List</button>
+    <button onclick="location.href='{% url 'tourn_info:r1' tournament_name=tournament.name%}'" id= "r1Button" type="button" class="btn btn-primary" {% if not tournament.r1_view_accessible %}disabled{%endif%}>Draw for Round 1</button>
+    <button onclick="location.href='{% url 'tourn_info:r2' tournament_name=tournament.name%}'" id= "r2Button" type="button" class="btn btn-primary" {% if not tournament.r2_view_accessible %}disabled{%endif%}>Draw for Round 2</button>
+    <button onclick="location.href='{% url 'tourn_info:r3' tournament_name=tournament.name%}'" id= "r3Button" type="button" class="btn btn-primary" {% if not tournament.r3_view_accessible %}disabled{%endif%}>Draw for Round 3</button>
+    <button onclick="location.href='{% url 'tourn_info:r4' tournament_name=tournament.name%}'" id= "r4Button" type="button" class="btn btn-primary" {% if not tournament.r4_view_accessible %}disabled{%endif%}>Draw for Round 4</button>
+    <button onclick="location.href='{% url 'tourn_info:r5' tournament_name=tournament.name%}'" id= "r5Button" type="button" class="btn btn-primary" {% if not tournament.r5_view_accessible %}disabled{%endif%}>Draw for Round 5</button>
+    <button onclick="location.href='{% url 'tourn_info:r32' tournament_name=tournament.name%}'" id= "r32Button" type="button" class="btn btn-primary" {% if not tournament.otuziki_view_accessible %}disabled{%endif%}>Draw for Pre-Quarter Finals</button>
+    <button onclick="location.href='{% url 'tourn_info:r24' tournament_name=tournament.name%}'" id= "r24Button" type="button" class="btn btn-primary" {% if not tournament.yirmidort_view_accessible %}disabled{%endif%}>Draw for Partial Quarter Finals </button>
+    <button onclick="location.href='{% url 'tourn_info:r12' tournament_name=tournament.name%}'" id= "r12Button" type="button" class="btn btn-primary" {% if not tournament.oniki_view_accessible %}disabled{%endif%}>Draw for Partial Semi Finals</button>
+    <button onclick="location.href='{% url 'tourn_info:r16' tournament_name=tournament.name%}'"id= "qfButton" type="button" class="btn btn-primary" {% if not tournament.onalti_view_accessible %}disabled{%endif%}>Draw for Quarter Finals</button>
+    <button onclick="location.href='{% url 'tourn_info:r8' tournament_name=tournament.name%}'" id= "sfButton" type="button" class="btn btn-primary" {% if not tournament.sekiz_view_accessible %}disabled{%endif%}>Draw for Semi Finals</button>
+    <button onclick="location.href='{% url 'tourn_info:final' tournament_name=tournament.name%}'" id= "finalButton" type="button" class="btn btn-primary" {% if not tournament.final_view_accessible %}disabled{%endif%}>Draw for the Final</button>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Results
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+      </ul>
+    </div>
+{%endblock%}
