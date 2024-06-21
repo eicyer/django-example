@@ -1,0 +1,10 @@
+/* admin_custom.css */
+.collapse-toggle {
+    background-color: #007bff;  /* Blue background */
+    color: white;               /* White text */
+    font-weight: bold;          /* Bold text */
+}
+
+.collapse-toggle:hover {
+    background-color: #0056b3;  /* Darker blue on hover */
+}
