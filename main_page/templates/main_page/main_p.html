@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Emir's Tab Page</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
+    {% load static %}
+  </head>
+  <body>
+
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'tournament_list' %}">
+            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Emir Tab
+          </a>
+        </div>
+      </nav>
+
+<div class = "container">
+{% block bodyblock %}
+<h1>Welcome to tabulator<h1>
+    <div class="before-weekend-container">
+        <h2>Before the Current Weekend</h2>
+        <ul>
+          {% for item in before_weekend %}
+              <li><a href="{% url 'detail' item.pk %}">{{ item.name }}</a></li>
+          {% endfor %}
+          {% if before_weekend.count == 0 %}
+              <h3>No tournaments yet.</h3>
+          {% endif %}
+        </ul>
+    </div>
+    
+    <div class="in-weekend-container">
+        <h2>Within the Current Weekend</h2>
+        <ul>
+          {% for item in in_weekend %}
+            <li><a href="{% url 'detail' item.pk %}">{{ item.name }}</a></li>
+          {% endfor %}
+          {% if in_weekend.count == 0 %}
+            <h3>No tournaments yet.</h3>
+          {% endif %}
+        </ul>
+    </div>
+    
+    <div class="after-weekend-container">
+        <h2>After the Current Weekend</h2>
+        <ul>
+          {% for item in after_weekend %}
+              <li><a href="{% url 'detail' item.pk %}">{{ item.name }}</a></li>
+          {% endfor %}
+          {% if after_weekend.count == 0 %}
+              <h3>No tournaments yet.</h3>
+          {% endif %}
+        </ul>
+    </div>
+
+    <button type="button" class="btn btn-secondary btn-lg"><a href="{% url 'hosting' %}">Host a Tournament!</a></button>
+
+
+{%endblock%}
+</div>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

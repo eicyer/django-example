@@ -1,0 +1,17 @@
+{% block content %}
+<form method="GET">
+    <select name="round" onchange="this.form.submit()">
+        {% for round in rounds %}
+        <option value="{{ round }}">{{ round }}</option>
+        {% endfor %}
+    </select>
+    <select name="lobby" onchange="this.form.submit()">
+        {% for lobby in lobbies %}
+        <option value="{{ lobby.id }}">{{ lobby.name }}</option>
+        {% endfor %}
+    </select>
+</form>
+{% for team_assignment in team_assignments %}
+    <!-- Display team assignment details -->
+{% endfor %}
+{% endblock %}
